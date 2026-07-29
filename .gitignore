@@ -1,0 +1,25 @@
+# STAR-CCM+ simulation files (large binaries — not for version control)
+*.sim
+*.sim~
+*.simh
+*.dmp
+
+# STAR-CCM+ working/temp output
+*.log
+starccm*.log
+*.h5
+
+# CAD / mesh exchange formats
+*.ccm
+*.cgns
+*.msh
+
+# OS cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
