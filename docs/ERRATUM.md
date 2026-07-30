@@ -32,7 +32,8 @@ Block length 0.026 → 0.025 m, Base Center → `[0.0375, 0, 0.090]`. Verified p
 
 | | Value |
 |---|---|
-| Predicted corrected torque (from (r₂⁴−r₁⁴) scaling) | ~0.199 N·m |
+| Predicted corrected torque — benchmark-implied (Po = 5.0) | 0.1986 N·m |
+| Predicted corrected torque — from (r₂⁴−r₁⁴) scaling | 0.1841 N·m |
 | Measured corrected torque, steady MRF | 0.192562 N·m |
 | Measured corrected torque, sliding mesh (2-period mean) | 0.193983 N·m |
 | **Corrected Po — MRF / sliding mesh** | **4.85 / 4.89** |

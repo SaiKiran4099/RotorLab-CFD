@@ -50,7 +50,7 @@ Realizable K-Epsilon is documented to over-predict power draw for Rushton geomet
 |---|---|---|
 | `Position[X]` max on ImpellerWall | 0.0807 m | Faces at RotZone radius — boundary composition suspect |
 | ImpellerWall surface area (via ∫ρ dA / ρ) | 0.0192 m² | Matches impeller-only sizing; interface imprint is clean, r=0.081 faces are negligible slivers |
-| `Position[X]`,`[Y]` max on Z-threshold slice | 0.0596, **0.0613 m** | **Blade tips at r ≈ 0.0615, not 0.050** |
+| `Position[X]`,`[Y]` max on Z-threshold slice | 0.0596, **0.0613 m** | **Blade tips well beyond 0.050** — 0.0613 is a lower bound (with 6 blades at 60°, the larger of max-X/max-Y lands within ~3.4% of true radius) |
 
 Surface area alone could not have found this — area is invariant to radial placement. Isolating the blades by Z-threshold and measuring radius directly is what exposed it.
 
@@ -72,11 +72,15 @@ Predicted torque ratio:      2.301
 
 Correction applied: Block length 0.026 → 0.025 m, Base Center → `[0.0375, 0, 0.090]`. Verified post-remesh by the same threshold measurement: **max radius 0.0500 m exactly**.
 
+Two independent predictions were made *before* the corrected run:
+
 ```
-Predicted corrected torque:  ~0.199 N·m
-Measured corrected torque:    0.192562 N·m   (MRF, 3.4% from prediction)
-Measured torque ratio:        2.164          (vs 2.301 predicted, 6% from a hand-derived scaling)
+Benchmark-implied torque (Po = 5.0, D = 0.100 m):   0.1986 N·m
+Scaling-implied torque (as-built ÷ 2.301):          0.1841 N·m
+Measured corrected torque (MRF):                    0.192562 N·m
 ```
+
+The measured value falls between the two, 3.0% below the benchmark-implied figure and 4.6% above the scaling-implied one. The measured as-built-to-corrected torque ratio was **2.164** against the 2.301 predicted by the (r₂⁴ − r₁⁴) scaling — a 6% discrepancy, which is reasonable for an analytical estimate that ignores blade thickness, disc interaction, and the Z-offset correction entirely.
 
 ---
 
