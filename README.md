@@ -8,7 +8,7 @@ The first attempt over-predicted Po by a factor of 2.1. Two plausible explanatio
 
 ![Power Number: as-built vs corrected against the published benchmark](images/RotorLab_PowerNumber_Correction.png)
 
-*Both rotating-machinery formulations over-predicted Po by 2.1x on the as-built geometry. After a dimensional audit traced the error to a 25% oversized swept diameter, the corrected case lands within 3% of the published benchmark and the two formulations agree to 0.74%.*
+*Both rotating-machinery formulations over-predicted Po by 2.1x on the as-built geometry. After a dimensional audit traced the error to a 25% oversized swept diameter, theh corrected case lands within 3% of the published benchmark and the two formulations agree to 0.74%.*
 
 ---
 
@@ -178,6 +178,7 @@ The sawtooth is normal transient behaviour — every inner iteration is plotted,
 ```
 docs/
   ERRATUM.md                             # What the PDFs get wrong, and why
+  RotorLab_Final_Validation_Report.pdf   # Corrected-geometry validation        [current]
   RotorLab_Final_Comparison_Report.pdf   # As-built MRF vs sliding mesh    [superseded]
   RotorLab_MRF_Results_Report.pdf        # As-built steady phase           [superseded]
   RotorLab_SlidingMesh_Setup_Log.pdf     # Transient settings and rationale [valid]
@@ -186,6 +187,7 @@ docs/
 data/
   slidingmesh_corrected_torque.csv       # Torque over the two-period averaging window
   moment_periodic_window.csv             # As-built equivalent
+images/RotorLab_PowerNumber_Correction.png  # Po summary: as-built vs corrected vs benchmark
 images/corrected/                        # Corrected-geometry figures (above)
 images/asbuilt/                          # As-built figures, retained for reference
 ```
@@ -196,7 +198,7 @@ The `docs/` PDFs are an engineering record kept as written rather than retroacti
 
 ## Selected Engineering Problems Solved
 
-- **Blade placement defect (headline).** A 2.1× Power Number over-prediction survived two competing physical explanations before a dimensional audit traced it to blade tips at r = 0.0625 instead of 0.050. Invisible to mesh diagnostics, surface-area checks, and residual behaviour; only direct radius measurement on a Z-thresholded boundary slice exposed it. The correction was predicted quantitatively before being applied and confirmed within 3.4%.
+- **Blade placement defect (headline).** A 2.1× Power Number over-prediction survived two competing physical explanations before a dimensional audit traced it to blade tips at r = 0.0625 instead of 0.050. Invisible to mesh diagnostics, surface-area checks, and residual behaviour; only direct radius measurement on a Z-thresholded boundary slice exposed it. The correction was predicted quantitatively before being applied and confirmed within 3%.
 
 - **Steady-adequate meshes can fail transient.** The corrected mesh converged cleanly under MRF (Continuity 1.14×10⁻⁴) but stalled per-timestep under sliding mesh at 10 inner iterations — Continuity stuck at 4.75×10⁻². Diagnostics showed localised degeneracies from the blade-disc Boolean intersection (93.19° max skewness, 15 µm minimum centroid spacing, 3.65×10⁻¹³ m³ minimum cell volume). Typical CFL was ~0.7, but ~55 in those cells. A steady solver iterates local stiffness away; a transient solver must resolve it inside each timestep. Raising inner iterations to 25 improved end-of-timestep Continuity by **330×**.
 
