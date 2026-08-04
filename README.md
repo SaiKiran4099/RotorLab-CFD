@@ -6,6 +6,10 @@ A self-directed CFD validation study on a baffled Rushton turbine stirred tank (
 
 The first attempt over-predicted Po by a factor of 2.1. Two plausible explanations were proposed and both were refuted by experiment. A dimensional audit traced the discrepancy to a **blade placement defect in the geometry**, the correction was predicted quantitatively before being applied, and the corrected case validated against the benchmark to within 3%.
 
+![Power Number: as-built vs corrected against the published benchmark](images/RotorLab_PowerNumber_Correction.png)
+
+*Both rotating-machinery formulations over-predicted Po by 2.1x on the as-built geometry. After a dimensional audit traced the error to a 25% oversized swept diameter, the corrected case lands within 3% of the published benchmark and the two formulations agree to 0.74%.*
+
 ---
 
 ## Results
